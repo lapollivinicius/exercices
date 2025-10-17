@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time of day</title>
+    <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    :root {
+        --sky-day: #7381ff;
+        --sky-night: linear-gradient(to top, #7381ff, #0c0f24);
+
+        --grass-day: #08a308;
+        --grass-night: #082b23;
+
+        --montain-day: #4859f3;
+        --montain-night: #2f3252;
+
+        --cloud-day: #fff;
+        --cloud-night: #21063f;
+
+        --sun-day: yellow;
+        --moon-night: #d3d3d3;
+
+        --sun-top: 70px;
+        --sun-left: 0px;
+    }
+    main {
+        background-color: rgb(225, 225, 255);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    /* WINDOW  */
+    .window {
+        z-index: 0;
+        width: 500px;
+        height: 300px;
+        background: var(--sky-day);
+        position: relative;
+        overflow: hidden;
+    }
+    .floor {
+        background-color: var(--grass-day);
+        width: 100%;
+        height: 50px;
+        position: absolute;
+        bottom: 0px;
+    }
+
+    /* SKY - CLOUNDS */
+
+    .cloud {
+        background-color: var(--cloud-day);
+        opacity: .7;
+        width: 80px;
+        height: 40px;
+        position: absolute;
+        
+    }
+    @keyframes cloud-animation-01 {
+        0% {
+            left: -100px;
+        }
+        100% {
+            left: 500px;
+        }
+    }
+    .cloud-01 {
+        top: 30px;
+        left: -100px;
+        animation: cloud-animation-01 9s linear infinite;
+    }
+    .cloud-02 {
+        top: 140px;
+        animation: cloud-animation-01 5s linear 1s infinite;
+        left: -100px;
+    }
+    .cloud-03 {
+        top: 80px;
+        animation: cloud-animation-01 7s linear 1s infinite reverse;
+        left: -100px;
+    }
+
+    /* MONTAIN */
+    .background {
+        left: 10px;
+        position: absolute;
+        animation: montain-animation 30s linear infinite;
+    }
+    @keyframes montain-animation {
+        from {
+            left: -100px;
+        }
+        to {
+            left: 70px;
+        }
+    }
+    .montain {
+        width: 250px;
+        height: 250px;
+        background-color: var(--montain-day);
+        position: absolute;
+        rotate: 45deg;
+        top: 130px;
+        left: 50px;
+    }
+    .montain-01 {
+        width: 350px;
+        height: 250px;
+        left: 100px;
+    }
+    .montain-02 {
+        width: 250px;
+        height: 250px;
+        top: 150px;
+        left: -50px;
+    }
+    .montain-03 {
+        width: 450px;
+        height: 450px;
+        left: 250px;
+    }
+
+    .sun {
+        z-index: -1;
+        width: 60px;
+        height: 60px;
+        background-color: var(--sun-day);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+
+        /* WILL CHANGE IN JS */
+        top: var(--sun-top);
+        left: var(--sun-left);
+        translate: -100% -100%;
+    }
+    .core {
+        width: 40px;
+        height: 40px;
+        background-color: rgb(197, 255, 209);
+    }
+    .res {
+        background-color: var(--grass-day);
+        margin: 1px 0;
+        width: 500px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: 'Press Start 2P';
+        font-size: .6em;
+        color: var(--cloud-day);
+    }
+
+
+    </style>
+</head>
+<body>
+    <main>
+        <div class="window">
+
+            <div class="sky">
+                <div class="background">
+                    <div class="montain montain-01"></div>
+                    <div class="montain montain-02"></div>
+                    <div class="montain montain-03"></div>
+                </div>
+                <div class="cloud cloud-01"></div>
+                <div class="cloud cloud-02"></div>
+                <div class="cloud cloud-03"></div>
+                <div class="sun"><div class="core"></div></div>
+            </div>
+
+            <div class="floor"></div>
+
+        </div>
+        <div class="res"></div>
+        <script defer>
+
+            // GET HOUR 
+            const Today = new Date();
+            const Hour = Number.parseInt(Today.getHours());
+            const Minutes = Number.parseInt(Today.getMinutes());
+            console.log(Hour);
+            
+            console.log(Hour, Minutes);
+
+            // MESSAGE AND HOUR
+            const Res = document.querySelector('div.res');
+            Res.innerHTML = `Now It's ${Hour}h${Minutes}!`;
+                
+            // SUN POSITION CALC DAY
+
+            function PositionSun() {
+
+                let positionDay;
+
+                if(Hour >= 6 || Hour >= 18) {
+                    const windowDay = Hour - 6;
+                    positionDay = parseInt((windowDay / 12) * 560);
+                    // DAY
+                } 
+                else {
+
+                    let windowNight 
+
+                    if(Hour < 6) {
+                        windowNight = Hour + 6
+                        positionDay = parseInt((windowNight / 12) * 560);
+                    } else if(Hour > 18) {
+                        windowNight = Hour - 18
+                        positionDay = parseInt((windowNight / 12) * 560);
+                    }
+                }
+                
+                console.log(positionDay);
+
+                // SUN POSITION 
+
+                const Root = document.documentElement;
+                Root.style.setProperty('--sun-left', positionDay + 'px');
+            }
+
+
+
+            // NIGHT THEME
+            function ChangeTheme() {
+                const Root = document.documentElement;
+                if(Hour < 6 || Hour > 18) {
+                    console.log('NIGHT');
+                    Root.style.setProperty('--sky-day', 'linear-gradient(to top, #7381ff, #0c0f24)')
+                    Root.style.setProperty('--grass-day', '#082b23');
+                    Root.style.setProperty('--montain-day', '#2f3252');
+                    Root.style.setProperty('--cloud-day', '#ffffff');
+                    Root.style.setProperty('--sun-day', '#d3d3d3');
+                    PositionSun();
+                } else {
+                    console.log('DAY');
+                    Root.style.setProperty('--sky-day', '#7381ff')
+                    Root.style.setProperty('--grass-day', '#08a308');
+                    Root.style.setProperty('--montain-day', '#4859f3');
+                    Root.style.setProperty('--cloud-day', '#ffffff');
+                    Root.style.setProperty('--sun-day', 'yellow');
+                    PositionSun();
+                }
+            };
+            ChangeTheme();
+        </script>
+    </main>
+</body>
+</html>
