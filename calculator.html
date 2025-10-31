@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: monospace;
+        font-size: 1.2em;
+    }
+    body {
+        background-color: rgb(235, 255, 236);
+        height: 100dvh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #calculator {
+        width: 460px;
+        height: 735px;
+        display: flex;
+        flex-flow: column nowrap;
+        background-color: rgb(187, 180, 160);
+        border-radius: 10px;
+    }
+    #view {
+        font-size: 4em;
+        background-color: rgb(217, 243, 221);
+        text-align: right;
+        line-height: 150px;
+        margin: 10px 10px 0px 10px;
+        padding: 10px 20px;
+        flex: 0 0 auto;
+        border-radius: 10px 10px 0 0;
+    }
+    #keyboard {
+        background-color: rgb(217, 243, 221);
+        display: flex;
+        flex-flow: row wrap;
+        margin: 0px 10px 10px 10px;
+        padding: 10px;
+        justify-content: center;
+        gap: 5px;
+        border-radius: 0 0 10px 10px;
+    }
+    #numbers {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-content: flex-start;
+        flex: 0 0 310px;
+        gap: 5px;
+    }
+    #operators {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        flex: 0 0 100px;
+        gap: 5px;
+    }
+    .key {
+        line-height: 100px;
+        width: 100px;
+        background-color: white;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.178);
+        user-select: none;
+    }
+    .key:hover {
+        box-shadow: 0px 0px 1px 1px black;
+        cursor: pointer;
+    }
+    #equal {
+        width: 415px;
+        line-height: 100px;
+        background-color: rgb(209, 170, 161);
+        margin: 2px;
+        text-align: center;
+    }
+
+    </style>
+</head>
+<body>
+    <section id="calculator">
+        <div id="view">
+            123
+        </div>
+        <div id="keyboard">
+            <div id="numbers">
+                <div id="number1" class="key">1</div>
+                <div id="number2" class="key">2</div>
+                <div id="number3" class="key">3</div>
+                <div id="number4" class="key">4</div>
+                <div id="number5" class="key">5</div>
+                <div id="number6" class="key">6</div>
+                <div id="number7" class="key">7</div>
+                <div id="number8" class="key">8</div>
+                <div id="number9" class="key">9</div>
+                <div id="number0" class="key">0</div>
+                <div id="decimal" class="key">,</div>
+                <div id="clear" class="key">CE</div>
+            </div>
+            <div id="operators">
+                <div id="plus" class="key">+</div>
+                <div id="minus" class="key">-</div>
+                <div id="times" class="key">x</div>
+                <div id="divide" class="key">÷</div>
+            </div>
+            <div id="equal" class="key">=</div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
