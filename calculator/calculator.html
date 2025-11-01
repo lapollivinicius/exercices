@@ -33,6 +33,7 @@
         background-color: rgb(217, 243, 221);
         text-align: right;
         line-height: 150px;
+        height: 170px;
         margin: 10px 10px 0px 10px;
         padding: 10px 20px;
         flex: 0 0 auto;
@@ -69,12 +70,18 @@
         background-color: white;
         text-align: center;
         border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.178);
+        box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.057);
         user-select: none;
     }
     .key:hover {
-        box-shadow: 0px 0px 1px 1px black;
+        box-shadow: inset 0px 0px 1px 1px black;
         cursor: pointer;
+    }
+    .key:active {
+        box-shadow: inset 0px 0px 0px 2px black;
+    }
+    .active {
+        background-color: rgb(142, 203, 150);
     }
     #equal {
         width: 415px;
@@ -88,9 +95,7 @@
 </head>
 <body>
     <section id="calculator">
-        <div id="view">
-            123
-        </div>
+        <div id="view"></div>
         <div id="keyboard">
             <div id="numbers">
                 <div id="number1" class="key">1</div>
@@ -103,7 +108,7 @@
                 <div id="number8" class="key">8</div>
                 <div id="number9" class="key">9</div>
                 <div id="number0" class="key">0</div>
-                <div id="decimal" class="key">,</div>
+                <div id="decimal" class="key">.</div>
                 <div id="clear" class="key">CE</div>
             </div>
             <div id="operators">
